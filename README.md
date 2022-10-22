@@ -4,16 +4,15 @@
     - [Rules](#rules)
     - [Gameplay](#gameplay)
   - [Development](#development)
-  - [Testing](#testing)
-  - [Production Build](#production-build)
-  - [Scanning](#scanning)
-  - [Publish Image](#publish-image)
-  - [Cleanup](#cleanup)
+    - [Testing](#testing)
+    - [Production Build](#production-build)
+    - [Scanning](#scanning)
+    - [Publish Image](#publish-image)
+    - [Cleanup](#cleanup)
 
 ## Overview
 
 ```bash
-# run the game
 d run --rm -it --name python_blackjack adegoodyer/python_blackjack:latest
 ```
 
@@ -49,21 +48,21 @@ d exec -it python_blackjack_dev bash
 d stop python_blackjack_dev && d rm python_blackjack_dev
 ```
 
-## Testing
+### Testing
 ```bash
 # build test container and execute tests
 d build --target testing -t adegoodyer/python_blackjack:testing . && \
 d run -it --rm --name python_blackjack_testing adegoodyer/python_blackjack:testing
 ```
 
-## Production Build
+### Production Build
 ```bash
 # build and run production container
 d build -t adegoodyer/python_blackjack:runtime . && \
 d run -it --rm --name python_blackjack_runtime adegoodyer/python_blackjack:runtime bash
 ```
 
-## Scanning
+### Scanning
 ```bash
 # scan container
 grype adegoodyer/python_blackjack:runtime
@@ -73,7 +72,7 @@ d scan adegoodyer/python_blackjack:runtime # uses snyk
 syft adegoodyer/python_blackjack:runtime
 ```
 
-## Publish Image
+### Publish Image
 ```bash
 # login and push image (via pipeline)
 git tag -a v0.0.1 -m "v0.0.1"
@@ -85,7 +84,7 @@ d logout && d login --username=adegoodyer
 d push -t username/repo:0.0.1 adegoodyer/python_flask_sqlite_form:latest .
 ```
 
-## Cleanup
+### Cleanup
 ```bash
 # stop and remove dev, testing, and runtime containers
 # clear unused volumes, networks, images and data
