@@ -14,7 +14,7 @@ CMD ["pytest"]
 
 # no build step required as Python isn't compiled
 
-FROM python:3.8-slim-buster
+FROM --platform=$BUILDPLATFORM python:3.8-slim-buster
 LABEL maintainer="Ade Goodyer <adriangoodyer@gmail.com>"
 WORKDIR /app
 COPY app/ .
